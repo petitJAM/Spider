@@ -5,7 +5,6 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetBehavior.*
 import android.support.v4.util.PatternsCompat
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.webkit.WebViewClient
 import com.alexpetitjean.spider.extensions.closeKeyboard
@@ -49,15 +48,21 @@ class MainActivity : AppCompatActivity() {
 
         urlInput.onTextChanged { text ->
             insertHttpButton.isEnabled = text.isEmpty()
+            insertNgrokButton.isEnabled = text.isEmpty()
         }
 
         insertHttpButton.setOnClickListener {
             urlInput.setText("https://")
-            urlInput.requestFocusAndOpenKeyboard()
             urlInput.setSelection(urlInput.text.length)
         }
 
+        insertNgrokButton.setOnClickListener {
+            urlInput.setText("https://.ngrok.io/")
+            urlInput.setSelection(8)
+        }
+
         clearButton.setOnClickListener { urlInput.text = null }
+
         goButton.setOnClickListener {
             reloadWebView()
             urlInput.closeKeyboard()
