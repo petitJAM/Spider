@@ -13,4 +13,6 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="overlay">#000000</color>
+
 </resources>

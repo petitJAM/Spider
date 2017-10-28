@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:showIn="@layout/content_bottom_sheet">
+
+    <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:iconSignifier="@drawable/ic_public_black_24dp"
+        app:labelText="URL">
+
+        <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+            android:id="@+id/urlInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textUri"
+            app:prefix="https://" />
+
+    </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+    <android.support.v7.widget.ButtonBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/insertHeadersDisplayWebsiteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="WhatIsMyBroswer.com" />
+
+        <Button
+            android:id="@+id/insertNgrokButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ngrok" />
+
+        <Button
+            android:id="@+id/clearButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+
+        <Button
+            android:id="@+id/goButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Go" />
+
+    </android.support.v7.widget.ButtonBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <CheckBox
+            android:id="@+id/httpsCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="https?"
+            android:textAllCaps="false"
+            android:typeface="monospace" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/httpHeadersList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:orientation="vertical" />
+
+    <Button
+        android:id="@+id/addHttpHeaderButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:drawableLeft="@drawable/ic_add_circle_black_24dp"
+        android:drawableStart="@drawable/ic_add_circle_black_24dp"
+        android:text="Add" />
+
+</LinearLayout>
