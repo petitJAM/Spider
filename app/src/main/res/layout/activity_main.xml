@@ -7,125 +7,55 @@
     android:layout_height="match_parent"
     tools:context="com.alexpetitjean.spider.MainActivity">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefreshLayout"
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/ToolbarStyle" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="56dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <WebView
-            android:id="@+id/webView"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <WebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <View
+            android:id="@+id/overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0"
+            android:background="@color/overlay" />
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/settingsBottomSheet"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="600dp"
         android:background="@color/white"
         android:orientation="vertical"
         app:behavior_peekHeight="56dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <LinearLayout
-            android:id="@+id/settingsBar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:longClickable="false"
-            android:elevation="2dp"
-            android:foreground="?android:selectableItemBackground"
-            android:background="@color/colorPrimary">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@null"
-                android:padding="16dp"
-                android:tint="@color/icons"
-                android:src="@drawable/spider" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textColor="@color/textLightPrimary"
-                android:text="Settings" />
-
-            <ImageView
-                android:id="@+id/settingsChevron"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@null"
-                android:layout_gravity="end"
-                android:padding="16dp"
-                android:tint="@color/icons"
-                android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
-
-        </LinearLayout>
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:orientation="vertical">
-
-                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:labelText="URL">
-
-                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                        android:id="@+id/urlInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textUri" />
-
-                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
-
-                <android.support.v7.widget.ButtonBarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <Button
-                        android:id="@+id/insertHttpButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:typeface="monospace"
-                        android:textAllCaps="false"
-                        android:text="https://" />
-
-                    <Button
-                        android:id="@+id/insertNgrokButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ngrok" />
-
-                    <Button
-                        android:id="@+id/clearButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Clear" />
-
-                    <Button
-                        android:id="@+id/goButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Go"/>
-
-                </android.support.v7.widget.ButtonBarLayout>
-
-            </LinearLayout>
-
-        </android.support.v4.widget.NestedScrollView>
+        <include layout="@layout/content_bottom_sheet" />
 
     </LinearLayout>
 
