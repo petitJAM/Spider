@@ -12,7 +12,6 @@
     <color name="textLightDisabled">#32FFFFFF</color>
 
     <color name="white">#FFFFFF</color>
-
-    <color name="overlay">#000000</color>
+    <color name="black">#000000</color>
 
 </resources>

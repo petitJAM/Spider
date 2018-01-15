@@ -1,4 +1,4 @@
-package com.alexpetitjean.spider
+package com.alexpetitjean.spider.ui
 
 import android.graphics.Bitmap
 import android.graphics.Rect
@@ -14,18 +14,21 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.alexpetitjean.spider.R
 import com.alexpetitjean.spider.data.HttpHeader
 import com.alexpetitjean.spider.data.WebViewConfig
 import com.alexpetitjean.spider.extensions.children
 import com.alexpetitjean.spider.extensions.closeKeyboard
 import com.alexpetitjean.spider.extensions.onTextChanged
+import com.alexpetitjean.spider.isValidUrl
+import com.alexpetitjean.spider.tintAllIcons
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_bottom_sheet_toolbar.*
 import kotlinx.android.synthetic.main.content_web_view_config.*
 import kotlinx.android.synthetic.main.row_http_header_inputs.view.*
 
 class MainActivity : AppCompatActivity() {
-    
+
     companion object {
         private const val TAG = "Spider"
     }
@@ -33,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     private val bottomSheetBehavior by lazy {
         BottomSheetBehavior.from(settingsBottomSheet)
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         tintAllIcons(toolbar.menu, ContextCompat.getColor(this, R.color.white))
 
         toolbar.setOnMenuItemClickListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.webViewControlsBack -> {
                     webView.goBack()
                     true
@@ -70,6 +73,7 @@ class MainActivity : AppCompatActivity() {
                 settingsChevron.rotation = -slideOffset * 180
                 overlay.alpha = 0.6f * slideOffset
             }
+
             override fun onStateChanged(bottomSheet: View, newState: Int) = Unit
         })
 
