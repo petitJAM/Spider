@@ -6,28 +6,28 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <Spinner
-        android:id="@+id/projectSpinner"
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/projectsSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/pageSpinner"
+        app:layout_constraintEnd_toStartOf="@+id/pagesSpinner"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/pageSpinner"
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/pagesSpinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/projectSpinner"
-        app:layout_constraintTop_toTopOf="@+id/projectSpinner" />
+        app:layout_constraintStart_toEndOf="@+id/projectsSpinner"
+        app:layout_constraintTop_toTopOf="@+id/projectsSpinner" />
 
     <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
         android:id="@+id/textFieldBoxes"
@@ -40,7 +40,7 @@
         app:labelText="URL"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/projectSpinner">
+        app:layout_constraintTop_toBottomOf="@+id/projectsSpinner">
 
         <studio.carbonylgroup.textfieldboxes.ExtendedEditText
             android:id="@+id/urlInput"

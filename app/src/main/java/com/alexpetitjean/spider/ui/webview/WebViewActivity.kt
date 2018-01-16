@@ -6,10 +6,14 @@ import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetBehavior.STATE_COLLAPSED
 import android.support.design.widget.BottomSheetBehavior.STATE_EXPANDED
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import com.alexpetitjean.spider.R
+import com.alexpetitjean.spider.data.Page
+import com.alexpetitjean.spider.data.Project
 import com.alexpetitjean.spider.database.SpiderDatabase
+import com.jakewharton.rxbinding2.widget.itemSelections
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_web_view.*
 import kotlinx.android.synthetic.main.content_bottom_sheet_toolbar.*
@@ -19,10 +23,16 @@ class WebViewActivity
     : AppCompatActivity(),
       WebViewContract.View {
 
+    companion object {
+        private const val TAG = "WebView"
+    }
 
     private val bottomSheetBehavior by lazy {
         BottomSheetBehavior.from(settingsBottomSheet)
     }
+
+    private var projects = emptyList<Project>()
+    private var pages = emptyList<Page>()
 
     override lateinit var presenter: WebViewContract.Presenter
 
@@ -51,16 +61,6 @@ class WebViewActivity
             override fun onStateChanged(bottomSheet: View, newState: Int) = Unit
         })
 
-        val projectAdapter = ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item,
-                arrayOf("Project A", "Project B", "Project C"))
-        projectSpinner.adapter = projectAdapter
-
-        val pageAdapter = ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_dropdown_item,
-                arrayOf("Page A", "Page B", "Page C"))
-        pageSpinner.adapter = pageAdapter
-
         val spiderDb = Room.databaseBuilder(applicationContext, SpiderDatabase::class.java, SpiderDatabase.NAME).build()
 
         WebViewPresenter(this, spiderDb)
@@ -77,8 +77,28 @@ class WebViewActivity
     }
 
     override fun render(viewState: WebViewViewState) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d(TAG, "Rendering: $viewState")
+
+        projects = viewState.projects
+
+        val projectsAdapter = ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,
+                viewState.projects.map(Project::name))
+        projectsSpinner.adapter = projectsAdapter
+        if (viewState.selectedProject != null) {
+            projectsSpinner.setSelection(viewState.projects.indexOf(viewState.selectedProject))
+        }
+
+        pages = viewState.pages
+        val pagesAdapter = ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item,
+                viewState.pages.map(Page::name))
+        pagesSpinner.adapter = pagesAdapter
     }
+
+    override fun selectProjectIntent(): Observable<Project> = projectsSpinner
+            .itemSelections()
+            .map { projects[it] }
 
     override fun goIntent(): Observable<Any> = TODO()
 }
