@@ -11,9 +11,9 @@
         style="@style/Widget.Spider.Backdrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="?actionBarSize"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:gravity="center_horizontal">
 
         <include layout="@layout/content_web_view_controls_backdrop" />
 
