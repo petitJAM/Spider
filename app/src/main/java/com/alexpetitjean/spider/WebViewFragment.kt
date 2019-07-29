@@ -27,7 +27,7 @@ class WebViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.webViewToolbar.setNavigationOnClickListener(
-            BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewSheet)
+            BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewFrontLayer)
         )
 
         val colorOnPrimary = requireContext().getThemedColor(R.attr.colorOnPrimary)

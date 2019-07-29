@@ -13,7 +13,7 @@ import androidx.core.content.ContextCompat
 
 class BackdropRevealNavigationIconClickListener(
         activity: Activity,
-        private val sheet: View
+        private val frontLayer: View
 ) : View.OnClickListener {
 
     private val context: Context = activity
@@ -51,7 +51,7 @@ class BackdropRevealNavigationIconClickListener(
             0
         }.toFloat()
 
-        val animator = ObjectAnimator.ofFloat(sheet, "translationY", translateY)
+        val animator = ObjectAnimator.ofFloat(frontLayer, "translationY", translateY)
         animator.duration = 500
         animator.interpolator = AccelerateDecelerateInterpolator()
         animatorSet.play(animator)
