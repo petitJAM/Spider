@@ -20,7 +20,7 @@
 
     <style name="Widget.Spider.Backdrop" parent="">
         <item name="android:background">?colorPrimary</item>
-        <item name="android:paddingTop">?actionBarSize</item>
+        <item name="android:paddingTop">@dimen/toolbarHeight</item>
         <item name="android:orientation">vertical</item>
     </style>
 

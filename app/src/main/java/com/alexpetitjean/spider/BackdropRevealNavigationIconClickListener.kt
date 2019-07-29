@@ -13,7 +13,8 @@ import androidx.core.content.ContextCompat
 
 class BackdropRevealNavigationIconClickListener(
         activity: Activity,
-        private val frontLayer: View
+        private val frontLayer: View,
+        private val calculateBackLayerHeight: () -> Int
 ) : View.OnClickListener {
 
     private val context: Context = activity
@@ -46,7 +47,7 @@ class BackdropRevealNavigationIconClickListener(
         }
 
         val translateY = if (backdropShown) {
-            height - context.resources.getDimensionPixelSize(R.dimen.web_view_controls_reveal_height)
+            calculateBackLayerHeight()
         } else {
             0
         }.toFloat()

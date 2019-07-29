@@ -10,24 +10,33 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.content_web_view_controls_backdrop.view.*
 import kotlinx.android.synthetic.main.fragment_web_view.*
 import kotlinx.android.synthetic.main.fragment_web_view.view.*
 
 class WebViewFragment : Fragment() {
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_web_view, container, false)
-        return view
+        return inflater.inflate(R.layout.fragment_web_view, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val backdropContentTopMargin = requireContext().resources
+            .getDimension(R.dimen.backdropContentTopMargin)
+            .toInt()
         view.webViewToolbar.setNavigationOnClickListener(
-            BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewFrontLayer)
+            BackdropRevealNavigationIconClickListener(
+                requireActivity(),
+                view.webViewFrontLayer
+            ) {
+                backdropContentTopMargin * 2 + view.controlsBackdropContent.height
+            }
         )
 
         val colorOnPrimary = requireContext().getThemedColor(R.attr.colorOnPrimary)
