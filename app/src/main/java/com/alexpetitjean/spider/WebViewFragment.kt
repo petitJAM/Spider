@@ -23,6 +23,10 @@ class WebViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        view.webViewToolbar.setNavigationOnClickListener(
+                BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewSheet)
+        )
+
         view.webView.settings.apply {
             @SuppressLint("SetJavaScriptEnabled")
             javaScriptEnabled = true
