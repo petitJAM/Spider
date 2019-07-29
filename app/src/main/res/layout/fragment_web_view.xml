@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".WebViewFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         style="@style/Widget.Spider.Backdrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +18,7 @@
 
         <include layout="@layout/content_web_view_controls_backdrop" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
