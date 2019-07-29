@@ -27,7 +27,6 @@
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
-            style="@style/Widget.Spider.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:navigationIcon="@drawable/ic_menu_black_24dp"

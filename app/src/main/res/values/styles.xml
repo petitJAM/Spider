@@ -10,10 +10,12 @@
         <item name="colorOnSecondary">@color/secondaryTextColor</item>
 
         <item name="android:fontFamily">monospace</item>
+
+        <item name="toolbarNavigationButtonStyle">@style/ToolbarNavigationButtonStyle</item>
     </style>
 
-    <style name="Widget.Spider.Toolbar" parent="Widget.MaterialComponents.Toolbar">
-        <item name="android:theme">@style/Theme.Spider</item>
+    <style name="ToolbarNavigationButtonStyle" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:tint">@color/primaryTextColor</item>
     </style>
 
     <style name="Widget.Spider.Backdrop" parent="">
