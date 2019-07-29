@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Spider</string>
     <string name="content_description_refresh_webview_content">Refresh WebView content</string>
+    <string name="hint_web_view_url">https://example.com</string>
 </resources>

@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:ellipsize="end"
-                android:hint="https://example.com"
+                android:hint="@string/hint_web_view_url"
                 android:lines="1"
                 tools:text="https://google.com/?q=bionicle" />
 
