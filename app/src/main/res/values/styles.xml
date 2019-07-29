@@ -12,4 +12,12 @@
         <item name="android:fontFamily">monospace</item>
     </style>
 
+    <style name="Widget.Spider.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:theme">@style/Theme.Spider</item>
+    </style>
+
+    <style name="Widget.Spider.Backdrop" parent="">
+        <item name="android:background">?colorPrimary</item>
+    </style>
+
 </resources>
