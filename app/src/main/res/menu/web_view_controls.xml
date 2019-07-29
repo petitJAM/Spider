@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/controlsRefresh"
+        android:icon="@drawable/ic_refresh_black_24dp"
+        android:title="@string/controls_menu_title_refresh"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/controlsBack"
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:title="@string/controls_menu_title_back"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/controlsForward"
+        android:icon="@drawable/ic_arrow_forward_black_24dp"
+        android:title="@string/controls_menu_title_forward"
+        app:showAsAction="ifRoom" />
+
+</menu>

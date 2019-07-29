@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Spider</string>
-    <string name="content_description_refresh_webview_content">Refresh WebView content</string>
+
     <string name="hint_web_view_url">https://example.com</string>
+    <string name="hint_web_view_title">Example Domain</string>
+
+    <string name="web_view_title_loading">Loading…</string>
+
+    <string name="content_description_web_view_favicon">WebView favicon</string>
+
+    <string name="controls_menu_title_refresh">Refresh</string>
+    <string name="controls_menu_title_back">Back</string>
+    <string name="controls_menu_title_forward">Forward</string>
 </resources>

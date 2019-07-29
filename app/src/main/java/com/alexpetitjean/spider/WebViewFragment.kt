@@ -8,14 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_web_view.*
 import kotlinx.android.synthetic.main.fragment_web_view.view.*
 
 class WebViewFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_web_view, container, false)
         return view
     }
@@ -24,8 +27,37 @@ class WebViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.webViewToolbar.setNavigationOnClickListener(
-                BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewSheet)
+            BackdropRevealNavigationIconClickListener(requireActivity(), view.webViewSheet)
         )
+
+        val colorOnPrimary = requireContext().getThemedColor(R.attr.colorOnPrimary)
+        view.webViewToolbar.menu.tintAllIcons(colorOnPrimary)
+
+        view.webViewToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.controlsRefresh -> {
+                    view.webView.reload()
+                    true
+                }
+                R.id.controlsBack -> {
+                    if (view.webView.canGoBack()) {
+                        view.webView.goBack()
+                        true
+                    } else {
+                        false
+                    }
+                }
+                R.id.controlsForward -> {
+                    if (view.webView.canGoForward()) {
+                        view.webView.goForward()
+                        true
+                    } else {
+                        false
+                    }
+                }
+                else -> false
+            }
+        }
 
         view.webView.settings.apply {
             @SuppressLint("SetJavaScriptEnabled")
@@ -35,14 +67,23 @@ class WebViewFragment : Fragment() {
         view.webView.webViewClient = object : WebViewClient() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
+                webViewLoadingIndicator.isVisible = true
+                webViewFavicon.isVisible = false
+                webViewFavicon.setImageBitmap(favicon)
+                webViewTitle.setText(R.string.web_view_title_loading)
+                webViewUrl.text = url
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                super.onPageFinished(view, url)
+                webViewLoadingIndicator.isVisible = false
+                webViewFavicon.isVisible = true
+                webViewFavicon.setImageBitmap(view?.favicon)
+                webViewTitle.text = view?.title
                 webViewUrl.text = url
             }
         }
 
         view.webView.loadUrl("https://google.com/search?q=bionicle&tbm=isch")
-
-        view.webViewRefresh.setOnClickListener {
-            view.webView.reload()
-        }
     }
 }

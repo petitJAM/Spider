@@ -28,6 +28,7 @@
             android:id="@+id/webViewToolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
+            app:menu="@menu/web_view_controls"
             app:navigationIcon="@drawable/ic_menu_black_24dp"
             app:title="@string/app_name"
             app:titleTextColor="@color/primaryTextColor" />
@@ -40,7 +41,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="?actionBarSize"
         android:background="@drawable/web_view_background_shape"
+        android:clickable="true"
         android:elevation="8dp"
+        android:focusable="true"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -52,25 +55,54 @@
             android:orientation="horizontal"
             tools:ignore="UseCompoundDrawables">
 
-            <ImageView
-                android:id="@+id/webViewRefresh"
+            <FrameLayout
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_margin="4dp"
-                android:padding="4dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:contentDescription="@string/content_description_refresh_webview_content"
-                android:src="@drawable/ic_refresh_black_24dp" />
+                android:layout_margin="8dp">
 
-            <TextView
-                android:id="@+id/webViewUrl"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/webViewFavicon"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/content_description_web_view_favicon" />
+
+                <ProgressBar
+                    android:id="@+id/webViewLoadingIndicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:indeterminate="true"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:ellipsize="end"
-                android:hint="@string/hint_web_view_url"
-                android:lines="1"
-                tools:text="https://google.com/?q=bionicle" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/webViewTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:hint="@string/hint_web_view_title"
+                    android:lines="1"
+                    android:textColor="?colorOnSurface"
+                    android:textSize="16sp"
+                    tools:text="Web Page Title" />
+
+                <TextView
+                    android:id="@+id/webViewUrl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:hint="@string/hint_web_view_url"
+                    android:lines="1"
+                    tools:text="https://google.com/?q=bionicle" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
