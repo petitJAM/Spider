@@ -12,13 +12,16 @@ import android.widget.ImageView
 import androidx.core.content.ContextCompat
 
 class BackdropRevealNavigationIconClickListener(
-        activity: Activity,
-        private val frontLayer: View,
-        private val calculateBackLayerHeight: () -> Int
+    activity: Activity,
+    private val frontLayer: View,
+    private val calculateBackLayerHeight: () -> Int
 ) : View.OnClickListener {
 
     private val context: Context = activity
     private val height: Int
+    private val duration = context.resources
+        .getInteger(android.R.integer.config_shortAnimTime)
+        .toLong()
 
     private val openIcon: Drawable
     private val closeIcon: Drawable
@@ -46,6 +49,8 @@ class BackdropRevealNavigationIconClickListener(
             updateIcon(view)
         }
 
+        view.requestFocus()
+
         val translateY = if (backdropShown) {
             calculateBackLayerHeight()
         } else {
@@ -53,7 +58,7 @@ class BackdropRevealNavigationIconClickListener(
         }.toFloat()
 
         val animator = ObjectAnimator.ofFloat(frontLayer, "translationY", translateY)
-        animator.duration = 500
+        animator.duration = duration
         animator.interpolator = AccelerateDecelerateInterpolator()
         animatorSet.play(animator)
         animator.start()
